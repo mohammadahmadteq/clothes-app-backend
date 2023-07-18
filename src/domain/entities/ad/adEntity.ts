@@ -8,7 +8,7 @@ export interface IAd{
 }
 
 
-class adEntity implements IAd {
+class AdEntity implements IAd {
      adId: string;
     name: string;
     material: string;
@@ -24,4 +24,10 @@ class adEntity implements IAd {
         this.userId = adEntity.userId;
         this.description = adEntity.description;
     }
+
+    static create (ad: IAd) : AdEntity {
+        return new AdEntity(ad)
+    }
 }
+
+export default AdEntity

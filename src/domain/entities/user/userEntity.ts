@@ -6,7 +6,7 @@ export interface IUser {
     password: string;
 }
 
- class userEntity implements IUser {
+export class userEntity implements IUser {
     userId: string;
     email: string;
     firstName: string;
