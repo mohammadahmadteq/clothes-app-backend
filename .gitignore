@@ -56,3 +56,10 @@ profile-*
 profile*
 *clinic*
 *flamegraph*
+
+
+
+pnpm-lock.yaml
+
+.env
+
