@@ -10,7 +10,8 @@
     "test": "tap \"test/**/*.test.js\"",
     "dev": "fastify start -w -l info -P app.js",
     "build": "tsc -p tsconfig.json",
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "eslint ./src --ext .ts"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,11 @@
   },
   "devDependencies": {
     "@types/node": "^20.4.2",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^3.0.0",
     "tap": "^16.1.0",
     "typescript": "^5.1.6"
   }

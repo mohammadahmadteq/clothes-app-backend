@@ -1,23 +1,26 @@
-export interface IBid {
-    bidId: string;
-    price: number;
-    adId: string;
-    userId: string;
-}
-
-class bidEntity implements IBid {
-    bidId: string;
-    price: number;
-    adId: string;
-    userId: string;
-
-    constructor(bidEntity: IBid)
-    {
-        this.bidId = bidEntity.bidId;
-        this.price = bidEntity.price;
-        this.adId = bidEntity.adId;
-        this.userId = bidEntity.userId;
-    }
-}
-
-export default bidEntity;
+import {
+  BidsUpsertArgs,
+  BidsCreateArgs,
+  BidsDeleteArgs,
+  BidsFindFirstArgs,
+  BidsAggregateArgs,
+  BidsFindUniqueArgs,
+  BidsFindManyArgs,
+  BidsCreateManyArgs,
+  BidsUpdateArgs,
+} from "../../../infrastructure/database/prisma/types/bids";
+import IBaseRepositoryPort from "../base/IBaseRepositoryPort";
+import BidEntity from "./bidEntity";
+export default interface IBidsRepositoryPort
+  extends IBaseRepositoryPort<
+    BidEntity,
+    BidsFindUniqueArgs,
+    BidsFindFirstArgs,
+    BidsFindManyArgs,
+    BidsCreateArgs,
+    BidsUpdateArgs,
+    BidsUpsertArgs,
+    BidsDeleteArgs,
+    BidsCreateManyArgs,
+    BidsAggregateArgs
+  > {}
