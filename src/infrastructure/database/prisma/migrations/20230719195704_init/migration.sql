@@ -24,7 +24,6 @@ CREATE TABLE `Ads` (
     `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `Ads_adId_key`(`adId`),
-    UNIQUE INDEX `Ads_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -34,6 +33,7 @@ CREATE TABLE `Bids` (
     `bidId` VARCHAR(191) NOT NULL,
     `price` INTEGER NOT NULL,
     `adId` VARCHAR(191) NOT NULL,
+    `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `Bids_bidId_key`(`bidId`),
     UNIQUE INDEX `Bids_adId_key`(`adId`),
@@ -45,3 +45,6 @@ ALTER TABLE `Ads` ADD CONSTRAINT `Ads_userId_fkey` FOREIGN KEY (`userId`) REFERE
 
 -- AddForeignKey
 ALTER TABLE `Bids` ADD CONSTRAINT `Bids_adId_fkey` FOREIGN KEY (`adId`) REFERENCES `Ads`(`adId`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Bids` ADD CONSTRAINT `Bids_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `Users`(`userId`) ON DELETE RESTRICT ON UPDATE CASCADE;
