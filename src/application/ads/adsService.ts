@@ -3,9 +3,11 @@ import IAdsRepositoryPort from "../../domain/entities/ad/IAdRepositoryPort";
 import AdEntity from "../../domain/entities/ad/adEntity";
 import AddNewAdDTO from "./newAdDTO";
 import generateEntityId from "../../sharedUtils/generateEntityId";
+import GetPublicAdsDTO from "./getAdsDTO";
+import UpdateAdDTO from "./updateAdDTO";
 
 @injectable()
-export class AdsService {
+class AdsService {
     constructor(@inject("IAdsRepositoryPort") private adsRepository: IAdsRepositoryPort) {}
 
     async addNewAd(newAdDTO: AddNewAdDTO) {
@@ -13,10 +15,22 @@ export class AdsService {
             adId: generateEntityId(),
             ...newAdDTO
         });
-        console.log(adEntity);
         return await this.adsRepository.create({
             data: adEntity
         });
     }
+
+    async getPublicAds(getPublicAdsDTO: GetPublicAdsDTO) {
+        console.log(getPublicAdsDTO);
+        const {currentPage, perPage} = getPublicAdsDTO;
+        const adsFetchedFromDB = await this.adsRepository.findMany({
+            skip: (currentPage - 1) * perPage,
+            take: perPage
+        });
+
+        return adsFetchedFromDB;
+    }
 }
+
+export default AdsService;
 

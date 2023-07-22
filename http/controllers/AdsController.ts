@@ -1,4 +1,5 @@
-import {AdsService} from "../../src/application/ads/adsService";
+import AdsService from "../../src/application/ads/adsService";
+import GetPublicAdsDTO from "../../src/application/ads/getAdsDTO";
 import AddNewAdDTO from "../../src/application/ads/newAdDTO";
 import container from "../../src/infrastructure/dependancyInjection/prismaRepositoriesContainer";
 
@@ -10,7 +11,8 @@ class AdController {
         return await this.adsService.addNewAd(newAdDTO);
     }
     static async getAds(req: any, res: any) {
-        // return await this.adsService.get();
+        const getPublicAdsDTO = new GetPublicAdsDTO(req.query);
+        return await this.adsService.getPublicAds(getPublicAdsDTO);
     }
     static async getUserAds(req: any, res: any) {
         // return await this.adsService.addNewAd();
