@@ -9,7 +9,7 @@ import IAuthInfraPort from "../../domain/entities/authInfraPort";
 class AuthService {
     constructor(
         @inject("IUserRepositoryPort") private userRepository: IUsersRepositoryPort,
-        @inject("IUserRepositoryPort") private authInfraService: IAuthInfraPort
+        @inject("IAuthInfraPort") private authInfraService: IAuthInfraPort
     ) {}
 
     async login(loginDTO: LoginDTO, reply: FastifyReply) {

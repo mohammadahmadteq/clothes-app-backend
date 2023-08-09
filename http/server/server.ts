@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import fastify from "fastify";
-import AdsRoutes from "../../http/routes/AdsRoutes";
+import AdsRoutes from "../routes/adsRoutes";
 import {API_PORT, API_URL} from "../../src/config/serverConfig";
 import authRoutes from "../routes/authRoutes";
 import authJwt from "../auth/authJwt";
