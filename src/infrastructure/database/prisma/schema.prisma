@@ -17,8 +17,8 @@ model Users {
   firstName String
   lastName  String
   createdAt DateTime @default(now())
-  updatedAt DateTime
-  deletedAt DateTime
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
   ads       Ads[]
   bids      Bids[]
   password String @unique
@@ -35,8 +35,8 @@ model Ads {
   userId      String
   bids        Bids[]
   createdAt DateTime @default(now())
-  updatedAt DateTime
-  deletedAt DateTime
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
 }
 
 model Bids {
@@ -48,6 +48,6 @@ model Bids {
   userId String
   Users  Users? @relation(fields: [userId], references: [userId])
   createdAt DateTime @default(now())
-  updatedAt DateTime
-  deletedAt DateTime
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
 }

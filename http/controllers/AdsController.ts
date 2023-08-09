@@ -8,7 +8,7 @@ class AdController {
 
     static async addNewAd(req: any, res: any) {
         const newAdDTO = new AddNewAdDTO(req.body);
-        return await this.adsService.addNewAd(newAdDTO);
+        return await this.adsService.createNewAd(newAdDTO);
     }
     static async getAds(req: any, res: any) {
         const getPublicAdsDTO = new GetPublicAdsDTO(req.query);

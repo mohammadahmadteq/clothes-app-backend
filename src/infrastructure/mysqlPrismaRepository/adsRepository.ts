@@ -1,37 +1,37 @@
 import {injectable} from "tsyringe";
 import IAdsRepositoryPort from "../../domain/entities/ad/IAdRepositoryPort";
 import adEntity from "../../domain/entities/ad/adEntity";
-import {
-    AdsUpsertArgs,
-    AdsCreateArgs,
-    AdsDeleteArgs,
-    AdsFindFirstArgs,
-    AdsAggregateArgs,
-    AdsFindUniqueArgs,
-    AdsFindManyArgs,
-    AdsCreateManyArgs,
-    AdsUpdateArgs
-} from "../../infrastructure/database/prisma/types/ads";
-import {baseRepository} from "./baseRepository";
+import {PrismaClient} from "@prisma/client";
 
 @injectable()
-export class adsRepository
-    extends baseRepository<
-        adEntity,
-        AdsFindUniqueArgs,
-        AdsFindFirstArgs,
-        AdsFindManyArgs,
-        AdsCreateArgs,
-        AdsUpdateArgs,
-        AdsUpsertArgs,
-        AdsDeleteArgs,
-        AdsCreateManyArgs,
-        AdsAggregateArgs
-    >
-    implements IAdsRepositoryPort
-{
-    constructor() {
-        super("ads");
+export class adsRepository implements IAdsRepositoryPort {
+    model = new PrismaClient().ads;
+    async createNewAd(adEntity: adEntity) {
+        return await this.model.create({
+            data: adEntity,
+            select: {
+                adId: true,
+                description: true,
+                name: true,
+                material: true,
+                size: true,
+                userId: true
+            }
+        });
+    }
+    getPublicAds(perPage: number, currentPage: number) {
+        return this.model.findMany({
+            skip: (currentPage - 1) * perPage,
+            take: perPage,
+            select: {
+                adId: true,
+                description: true,
+                name: true,
+                material: true,
+                size: true,
+                userId: true
+            }
+        });
     }
 }
 
