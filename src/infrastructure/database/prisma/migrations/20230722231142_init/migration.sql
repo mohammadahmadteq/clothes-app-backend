@@ -6,10 +6,13 @@ CREATE TABLE `Users` (
     `firstName` VARCHAR(191) NOT NULL,
     `lastName` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
     `deletedAt` DATETIME(3) NOT NULL,
+    `password` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `Users_userId_key`(`userId`),
     UNIQUE INDEX `Users_email_key`(`email`),
+    UNIQUE INDEX `Users_password_key`(`password`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -22,6 +25,9 @@ CREATE TABLE `Ads` (
     `size` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+    `deletedAt` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `Ads_adId_key`(`adId`),
     PRIMARY KEY (`id`)
@@ -34,6 +40,9 @@ CREATE TABLE `Bids` (
     `price` INTEGER NOT NULL,
     `adId` VARCHAR(191) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+    `deletedAt` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `Bids_bidId_key`(`bidId`),
     UNIQUE INDEX `Bids_adId_key`(`adId`),

@@ -1,21 +1,22 @@
+import {FastifyInstance} from "fastify";
 import AdController from "../controllers/AdsController";
 
 const routeName: string = "ads";
-async function AdsRoutes(fastify: any) {
-    fastify.post(`/${routeName}/add`, (req: any, res: any) => {
-        return AdController.addNewAd(req, res);
+async function AdsRoutes(fastify: FastifyInstance) {
+    fastify.post(`/${routeName}/add`, {onRequest: [fastify.authenticate]}, (request, reply) => {
+        return AdController.addNewAd(request, reply);
     });
-    fastify.get(`/${routeName}/search`, (req: any, res: any) => {
-        return AdController.getAds(req, res);
+    fastify.get(`/${routeName}/search`, (request, reply) => {
+        return AdController.getAds(request, reply);
     });
-    fastify.delete(`/${routeName}/delete`, (req: any, res: any) => {
-        return AdController.getUserAds(req, res);
+    fastify.delete(`/${routeName}/delete`, (request, reply) => {
+        return AdController.getUserAds(request, reply);
     });
-    fastify.put(`/${routeName}/edit`, (req: any, res: any) => {
-        return AdController.updateAds(req, res);
+    fastify.put(`/${routeName}/edit`, (request, reply) => {
+        return AdController.updateAds(request, reply);
     });
-    fastify.get(`/${routeName}/userAds`, (req: any, res: any) => {
-        return AdController.getUserAds(req, res);
+    fastify.get(`/${routeName}/userAds`, (request, reply) => {
+        return AdController.getUserAds(request, reply);
     });
 }
 
