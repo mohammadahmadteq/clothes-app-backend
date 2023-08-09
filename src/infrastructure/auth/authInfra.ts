@@ -1,18 +1,19 @@
 import {createSigner} from "fast-jwt";
 import {IUser} from "../../domain/entities/user/userEntity";
 import bcrypt from "bcrypt";
-class AuthInfra {
-    static createLoginJWT(payload: IUser) {
+import IAuthInfraPort from "../../domain/entities/authInfraPort";
+class AuthInfra implements IAuthInfraPort {
+    createLoginJWT(payload: IUser) {
         const signer = createSigner({key: "secret"});
         return signer(payload);
     }
 
-    static encryptPassword(password: string) {
-        return bcrypt.hashSync(password, 10);
+    async encryptPassword(password: string) {
+        return await bcrypt.hash(password, 10);
     }
 
-    static verifyPassword(password: string, hashedPassword: string) {
-        return bcrypt.compareSync(password, hashedPassword);
+    async verifyPassword(password: string, hashedPassword: string) {
+        return await bcrypt.compare(password, hashedPassword);
     }
 }
 

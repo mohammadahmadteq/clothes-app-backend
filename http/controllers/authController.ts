@@ -1,7 +1,7 @@
 import {FastifyReply} from "fastify/types/reply";
 import AuthService from "../../src/application/auth/authService";
 import LoginDTO from "../../src/application/auth/loginDTO";
-import container from "../../src/infrastructure/dependancyInjection/prismaRepositoriesContainer";
+import container from "../../src/infrastructure/dependancyInjection/container";
 import {FastifyRequest} from "fastify/types/request";
 
 class AuthController {

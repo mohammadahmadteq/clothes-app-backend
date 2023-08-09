@@ -18,7 +18,6 @@ class AdsService {
     }
 
     async getPublicAds(getPublicAdsDTO: GetPublicAdsDTO) {
-        console.log(getPublicAdsDTO);
         const {currentPage, perPage} = getPublicAdsDTO;
         const adsFetchedFromDB = await this.adsRepository.getPublicAds(currentPage, perPage);
 

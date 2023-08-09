@@ -1,7 +1,7 @@
 import AdsService from "../../src/application/ads/adsService";
 import GetPublicAdsDTO from "../../src/application/ads/getAdsDTO";
 import AddNewAdDTO from "../../src/application/ads/newAdDTO";
-import container from "../../src/infrastructure/dependancyInjection/prismaRepositoriesContainer";
+import container from "../../src/infrastructure/dependancyInjection/container";
 
 class AdController {
     static adsService = container.resolve(AdsService);
