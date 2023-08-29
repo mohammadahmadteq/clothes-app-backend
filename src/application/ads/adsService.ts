@@ -1,26 +1,29 @@
-import { inject, injectable } from "tsyringe";
+import {inject, injectable} from "tsyringe";
 import IAdsRepositoryPort from "../../domain/entities/ad/IAdRepositoryPort";
 import AdEntity from "../../domain/entities/ad/adEntity";
+import AddNewAdDTO from "./newAdDTO";
 import generateEntityId from "../../sharedUtils/generateEntityId";
+import GetPublicAdsDTO from "./getAdsDTO";
 
 @injectable()
-export class AdsService {
-    constructor( @inject("IAdsRepositoryPort") private adsRepository: IAdsRepositoryPort)
-    {
-    }
+class AdsService {
+    constructor(@inject("IAdsRepositoryPort") private adsRepository: IAdsRepositoryPort) {}
 
-    async addNewAd() {
+    async createNewAd(newAdDTO: AddNewAdDTO) {
         const adEntity = AdEntity.create({
             adId: generateEntityId(),
-            name: "Test Ad",
-            material: "test",
-            size: "xl",
-            userId: "1",
-            description: "djndcn"
-        })
-        
-       return await this.adsRepository.create({
-            data: adEntity
-        })
+            ...newAdDTO
+        });
+        return await this.adsRepository.createNewAd(adEntity);
+    }
+
+    async getPublicAds(getPublicAdsDTO: GetPublicAdsDTO) {
+        const {currentPage, perPage} = getPublicAdsDTO;
+        const adsFetchedFromDB = await this.adsRepository.getPublicAds(currentPage, perPage);
+
+        return adsFetchedFromDB;
     }
 }
+
+export default AdsService;
+
