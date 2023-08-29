@@ -1,10 +1,23 @@
-import fastify from "fastify";
 import AdController from "../controllers/AdsController";
 
-async function AdsRoutes(fastify: any, options: any) {
-     fastify.post("/add", (req: any, res: any) => {
-        return AdController.addNewAd(req)
-     });
+const routeName: string = "ads";
+async function AdsRoutes(fastify: any) {
+    fastify.post(`/${routeName}/add`, (req: any, res: any) => {
+        return AdController.addNewAd(req, res);
+    });
+    fastify.get(`/${routeName}/search`, (req: any, res: any) => {
+        return AdController.getAds(req, res);
+    });
+    fastify.delete(`/${routeName}/delete`, (req: any, res: any) => {
+        return AdController.getUserAds(req, res);
+    });
+    fastify.put(`/${routeName}/edit`, (req: any, res: any) => {
+        return AdController.updateAds(req, res);
+    });
+    fastify.get(`/${routeName}/userAds`, (req: any, res: any) => {
+        return AdController.getUserAds(req, res);
+    });
 }
 
-export default AdsRoutes
+export default AdsRoutes;
+

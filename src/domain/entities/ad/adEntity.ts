@@ -1,4 +1,4 @@
-export interface IAd{
+export interface IAd {
     adId: string;
     name: string;
     material: string;
@@ -7,9 +7,8 @@ export interface IAd{
     description: string;
 }
 
-
 class AdEntity implements IAd {
-     adId: string;
+    adId: string;
     name: string;
     material: string;
     size: string;
@@ -19,15 +18,15 @@ class AdEntity implements IAd {
     constructor(adEntity: IAd) {
         this.adId = adEntity.adId;
         this.name = adEntity.name;
-        this.material = adEntity.material
+        this.material = adEntity.material;
         this.size = adEntity.size;
         this.userId = adEntity.userId;
         this.description = adEntity.description;
     }
 
-    static create (ad: IAd) : AdEntity {
-        return new AdEntity(ad)
+    static create(ad: IAd): AdEntity {
+        return new AdEntity(ad);
     }
 }
 
-export default AdEntity
+export default AdEntity;

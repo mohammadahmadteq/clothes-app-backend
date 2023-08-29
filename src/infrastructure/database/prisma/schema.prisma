@@ -30,7 +30,7 @@ model Ads {
   size        String
   description String
   user        Users  @relation(fields: [userId], references: [userId])
-  userId      String @unique
+  userId      String
   bids        Bids[]
 }
 
