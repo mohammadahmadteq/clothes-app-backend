@@ -6,14 +6,14 @@ export interface IUser {
     password: string;
 }
 
-export class userEntity implements IUser {
+export class UserEntity implements IUser {
     userId: string;
     email: string;
     firstName: string;
     lastName: string;
     password: string;
 
-    constructor (userEntity: IUser){
+    constructor(userEntity: IUser) {
         this.email = userEntity.email;
         this.userId = userEntity.userId;
         this.firstName = userEntity.firstName;
@@ -21,15 +21,15 @@ export class userEntity implements IUser {
         this.password = userEntity.password;
     }
 
-    static create (user: IUser) : userEntity {
-        return new userEntity(user)
+    static create(user: IUser): UserEntity {
+        return new UserEntity(user);
     }
 
-    static publicFields (user: IUser): Partial<IUser> {
-        const entity: Partial<IUser> = new userEntity(user);
+    static publicFields(user: IUser): Partial<IUser> {
+        const entity: Partial<IUser> = new UserEntity(user);
         delete entity.password;
-        return entity
+        return entity;
     }
 }
 
-export default userEntity
+export default UserEntity;
